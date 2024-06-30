@@ -43,7 +43,6 @@ export class CarsComponent extends TitleMixin(
 
   constructor() {
     super();
-    this.#vehicleService.getCars().pipe(takeUntilDestroyed()).subscribe();
     this.#breakpointObserver
       .observe(['(min-width: 768px)'])
       .pipe(takeUntilDestroyed())
@@ -56,5 +55,6 @@ export class CarsComponent extends TitleMixin(
           this.mediaApectRatio.set(MediaAspectRatio.mobile);
         }
       });
+    this.#vehicleService.getCars().pipe(takeUntilDestroyed()).subscribe();
   }
 }
