@@ -1,6 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
-import { Router } from '@angular/router';
 import { ConfigService } from '@vehicles/app/services/config/config.service';
 import { Vehicle, VehicleDetail } from '@vehicles/cars/models';
 import { Observable, catchError, forkJoin, of, switchMap, tap } from 'rxjs';
@@ -17,7 +16,6 @@ export class VehicleService {
   #baseUrl: string;
   #configService = inject(ConfigService);
   #http = inject(HttpClient);
-  #router = inject(Router);
   #vehicleStateService = inject(VehicleStateService);
 
   constructor() {
