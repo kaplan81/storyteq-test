@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AppComponent should match snapshot 1`] = `
+<teq-root
+  title={[Function String]}
+>
+  <header
+    role="banner"
+  >
+    <h1>
+      Cars“R”Us
+    </h1>
+  </header><main
+    role="main"
+  >
+    <section>
+      <router-outlet />
+    </section>
+  </main><footer
+    role="contentinfo"
+  >
+    <p>
+      © 2024 Cars“R”Us
+    </p>
+  </footer>
+</teq-root>
+`;
