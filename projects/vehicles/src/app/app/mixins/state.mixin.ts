@@ -35,6 +35,8 @@ export function StateMixin<B extends Constructor, S>(
            * Whatever action we want to execute
            * whenever the state is updated.
            */
+          // For example:
+          console.log(this.state());
         });
       });
     }

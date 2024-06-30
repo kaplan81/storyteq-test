@@ -3,7 +3,6 @@ import {
   ChangeDetectionStrategy,
   Component,
   Signal,
-  effect,
   inject,
 } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
@@ -36,9 +35,5 @@ export class CarsComponent extends TitleMixin(
   constructor() {
     super();
     this.#vehicleService.getCars().pipe(takeUntilDestroyed()).subscribe();
-
-    effect(() => {
-      console.log(this.#vehicleStateService.state());
-    });
   }
 }
