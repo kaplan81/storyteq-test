@@ -1,5 +1,7 @@
+$foreground: #3f577f;
+
 header {
-  background-color: #3f577f;
+  background-color: $foreground;
   color: #fff;
   padding: 20px;
   text-align: center;
@@ -24,7 +26,7 @@ main {
 }
 
 footer {
-  background-color: #3f577f;
+  background-color: $foreground;
   color: #fff;
   padding: 10px;
   text-align: center;
