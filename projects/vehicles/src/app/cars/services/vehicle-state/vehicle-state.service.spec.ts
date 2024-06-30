@@ -59,11 +59,8 @@ describe('VehicleService', () => {
 
   describe('updateVehicleEntityDetail()', () => {
     it('should update the entity detail prop', () => {
-      console.log(vehicleStateService.state());
       vehicleStateService.updateState(vehicleStateWithoutDetailMock);
-      console.log(vehicleStateService.state());
       vehicleStateService.updateVehicleEntityDetail(vehicleDetailMock);
-      console.log(vehicleStateService.state());
       expect(vehicleStateService.state()).toEqual({
         ...vehicleStateInitial,
         ids: [vehicleMock.id],
