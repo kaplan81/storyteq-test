@@ -1,6 +1,6 @@
 import { Injectable, Signal, computed } from '@angular/core';
 import { Constructor, StateMixin, emptyBase } from '@vehicles/app/mixins';
-import { Entities, EntityState } from '@vehicles/app/models';
+import { Entities } from '@vehicles/app/models';
 import { VechicleState, Vehicle, VehicleDetail, VehicleEntity } from '@vehicles/cars/models';
 import { vehicleStateInitial } from './vehicle-state.initial';
 
@@ -23,20 +23,39 @@ export class VehicleStateService extends StateMixin<Constructor, VechicleState>(
 
   parseVehiclesToState(cars: Vehicle[]): VechicleState {
     return cars.reduce(
-      (acc: EntityState<VehicleEntity>, car: Vehicle) => {
+      (acc: VechicleState, car: Vehicle) => {
         return {
           ids: [...acc.ids, car.id],
           entities: {
             ...acc.entities,
             [car.id]: { ...car, detail: null },
           },
+          loaded: acc.loaded,
+          loading: acc.loading,
         };
       },
       {
-        ids: [],
+        ids: vehicleStateInitial.ids,
         entities: {},
-      } as EntityState<VehicleEntity>,
+        loaded: vehicleStateInitial.loaded,
+        loading: vehicleStateInitial.loading,
+      } as VechicleState,
     );
+  }
+
+  removeVehicleEntity(entityId: string): void {
+    if (this.#hasEntities()) {
+      const state: VechicleState = this.state();
+      const ids: (string | number)[] = state.ids.filter((id: string | number) => id !== entityId);
+      const entities = state.entities as Entities<VehicleEntity>;
+      delete entities[entityId];
+      this.updateState({
+        ids,
+        entities,
+        loaded: state.loaded,
+        loading: state.loading,
+      });
+    }
   }
 
   updateVehicleEntityDetail(detail: VehicleDetail): void {
@@ -52,6 +71,6 @@ export class VehicleStateService extends StateMixin<Constructor, VechicleState>(
   }
 
   #hasEntities(): boolean {
-    return this.state().entities !== null;
+    return this.state().ids.length > 0;
   }
 }

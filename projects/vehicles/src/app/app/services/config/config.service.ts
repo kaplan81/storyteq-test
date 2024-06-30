@@ -37,7 +37,7 @@ export class ConfigService {
       .pipe(
         tap((config: Config) => (this.#config = config)),
         catchError((error) => {
-          throw Error(`Error while loading config. Details: ${error}`);
+          throw Error(`Error while loading config. Details: ${JSON.stringify(error)}`);
         }),
       );
   }

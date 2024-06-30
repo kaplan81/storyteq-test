@@ -1,5 +1,5 @@
 <h2>Cars component</h2>
-@if (cars().length > 0) {
+@if (vehicleState().loaded) {
   <pre>
     {{ cars() | json }}
   </pre>

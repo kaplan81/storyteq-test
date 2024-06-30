@@ -28,3 +28,33 @@ export interface VehicleDetailEmissions {
   template: string;
   value: number;
 }
+
+export class VehicleError extends Error {
+  status: number;
+  url: string;
+  error: VehicleErrorError;
+  constructor({
+    name,
+    message,
+    status,
+    url,
+    error,
+  }: {
+    name: string;
+    message: string;
+    status: number;
+    url: string;
+    error: VehicleErrorError;
+  }) {
+    super();
+    this.message = message;
+    this.name = name;
+    this.status = status;
+    this.url = url;
+    this.error = error;
+  }
+}
+
+export interface VehicleErrorError {
+  error: string;
+}

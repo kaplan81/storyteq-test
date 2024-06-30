@@ -1,10 +1,10 @@
 import { JsonPipe } from '@angular/common';
-import { ChangeDetectionStrategy, Component, Signal, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Signal, computed, inject } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { SpinnerComponent } from '@vehicles/app/components';
 import { RoutedComponents } from '@vehicles/app/enums';
 import { TitleMixin, emptyBase } from '@vehicles/app/mixins';
-import { VehicleEntity } from '@vehicles/cars/models';
+import { VechicleState, VehicleEntity } from '@vehicles/cars/models';
 import { VehicleStateService } from '@vehicles/cars/services/vehicle-state/vehicle-state.service';
 import { VehicleService } from '@vehicles/cars/services/vehicle/vehicle.service';
 
@@ -23,6 +23,9 @@ export class CarsComponent extends TitleMixin(
   #vehicleService = inject(VehicleService);
   #vehicleStateService = inject(VehicleStateService);
   cars: Signal<VehicleEntity[]> = this.#vehicleStateService.getSortedVehicleEntities();
+  vehicleState: Signal<VechicleState> = computed<VechicleState>(() =>
+    this.#vehicleStateService.state(),
+  );
 
   /**
    * Test calls.
