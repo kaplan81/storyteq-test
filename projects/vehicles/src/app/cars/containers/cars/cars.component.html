@@ -1,10 +1,12 @@
 <h2>Cars component</h2>
-
-<teq-spinner></teq-spinner>
-
+@if (cars().length > 0) {
 <pre>
-  {{ cars() | json }}
-</pre>
+    {{ cars() | json }}
+  </pre
+>
+} @else {
+<teq-spinner></teq-spinner>
+}
 
 <!-- <ul>
   @for (car of cars(); track $index) {

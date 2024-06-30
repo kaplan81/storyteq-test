@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { ConfigService } from '@vehicles/app/services/config/config.service';
 import { Vehicle, VehicleDetail } from '@vehicles/cars/models';
-import { Observable, tap } from 'rxjs';
+import { Observable, delay, tap } from 'rxjs';
 import { VehicleStateService } from '../vehicle-state/vehicle-state.service';
 
 @Injectable({
@@ -18,13 +18,15 @@ export class VehicleService {
 
   getCar(carId: string): Observable<VehicleDetail> {
     const url = `${this.#getVehiclesApiUrl()}/${carId}`;
-    return this.#http
-      .get<VehicleDetail>(url)
-      .pipe(
-        tap((carDetail: VehicleDetail) =>
-          this.#vehicleStateService.updateVehicleEntityDetail(carDetail)
-        )
-      );
+    return this.#http.get<VehicleDetail>(url).pipe(
+      /**
+       * Add a delay to make it more realistic and show the spinner.
+       */
+      delay(1500),
+      tap((carDetail: VehicleDetail) =>
+        this.#vehicleStateService.updateVehicleEntityDetail(carDetail)
+      )
+    );
   }
 
   /**
@@ -34,15 +36,17 @@ export class VehicleService {
    */
   getCars(): Observable<Vehicle[]> {
     const url: string = this.#getVehiclesApiUrl();
-    return this.#http
-      .get<Vehicle[]>(url)
-      .pipe(
-        tap((cars: Vehicle[]) =>
-          this.#vehicleStateService.updateState(
-            this.#vehicleStateService.parseVehiclesToState(cars)
-          )
+    return this.#http.get<Vehicle[]>(url).pipe(
+      /**
+       * Add a delay to make it more realistic and show the spinner.
+       */
+      delay(1500),
+      tap((cars: Vehicle[]) =>
+        this.#vehicleStateService.updateState(
+          this.#vehicleStateService.parseVehiclesToState(cars)
         )
-      );
+      )
+    );
   }
 
   #getVehiclesApiUrl(): string {
