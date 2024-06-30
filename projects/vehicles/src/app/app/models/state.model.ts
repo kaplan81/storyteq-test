@@ -18,5 +18,7 @@ export interface State<S> {
 
 export interface EntityState<V> {
   ids: (string | number)[];
-  entities: { [id: string | number]: V } | null;
+  entities: Entities<V> | null;
 }
+
+export type Entities<V> = { [id: string | number]: V };

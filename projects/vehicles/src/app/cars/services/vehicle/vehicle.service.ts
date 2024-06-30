@@ -1,13 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
-import { EntityState } from '@vehicles/app/models';
 import { ConfigService } from '@vehicles/app/services/config/config.service';
-import {
-  VechicleState,
-  Vehicle,
-  VehicleDetail,
-  VehicleEntity,
-} from '@vehicles/cars/models';
+import { Vehicle, VehicleDetail } from '@vehicles/cars/models';
 import { Observable, tap } from 'rxjs';
 import { VehicleStateService } from '../vehicle-state/vehicle-state.service';
 
@@ -26,7 +20,11 @@ export class VehicleService {
     const url = `${this.#getVehiclesApiUrl()}/${carId}`;
     return this.#http
       .get<VehicleDetail>(url)
-      .pipe(tap((carDetail: VehicleDetail) => console.log(carDetail)));
+      .pipe(
+        tap((carDetail: VehicleDetail) =>
+          this.#vehicleStateService.updateVehicleEntityDetail(carDetail)
+        )
+      );
   }
 
   /**
@@ -41,7 +39,7 @@ export class VehicleService {
       .pipe(
         tap((cars: Vehicle[]) =>
           this.#vehicleStateService.updateState(
-            this.#parseVehiclesToState(cars)
+            this.#vehicleStateService.parseVehiclesToState(cars)
           )
         )
       );
@@ -51,23 +49,5 @@ export class VehicleService {
     return `${this.#baseUrl}/${VehicleService.apiSegment}/${
       VehicleService.vehiclesSegment
     }`;
-  }
-
-  #parseVehiclesToState(cars: Vehicle[]): VechicleState {
-    return cars.reduce(
-      (acc: EntityState<VehicleEntity>, car: Vehicle) => {
-        return {
-          ids: [...acc.ids, car.id],
-          entities: {
-            ...acc.entities,
-            [car.id]: { ...car, detail: null },
-          },
-        };
-      },
-      {
-        ids: [],
-        entities: {},
-      } as EntityState<VehicleEntity>
-    );
   }
 }

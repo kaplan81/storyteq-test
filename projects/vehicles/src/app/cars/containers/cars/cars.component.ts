@@ -23,6 +23,5 @@ export class CarsComponent extends TitleMixin(
   constructor() {
     super();
     this.#vehiclesService.getCars().subscribe();
-    this.#vehiclesService.getCar('xe').subscribe();
   }
 }
