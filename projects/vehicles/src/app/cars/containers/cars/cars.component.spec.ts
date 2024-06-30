@@ -9,11 +9,7 @@ describe('CarsComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [CarsComponent],
-      providers: [
-        provideHttpClient(),
-        provideHttpClientTesting(),
-        // { provide: ConfigService, useClass: ConfigServiceMock },
-      ],
+      providers: [provideHttpClient(), provideHttpClientTesting()],
     }).compileComponents();
     fixture = TestBed.createComponent(CarsComponent);
   });
