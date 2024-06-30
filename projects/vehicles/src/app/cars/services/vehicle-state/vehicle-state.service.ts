@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Signal, computed } from '@angular/core';
 import { Constructor, StateMixin, emptyBase } from '@vehicles/app/mixins';
 import { Entities, EntityState } from '@vehicles/app/models';
 import {
@@ -16,16 +16,16 @@ export class VehicleStateService extends StateMixin<Constructor, VechicleState>(
   emptyBase,
   vehicleStateInitial
 ) {
-  updateVehicleEntityDetail(detail: VehicleDetail): void {
-    if (this.state().entities !== null) {
-      this.updateStateProp('entities', {
-        ...this.state().entities,
-        [detail.id]: {
-          ...(this.state().entities as Entities<VehicleEntity>)[detail.id],
-          detail,
-        },
-      });
-    }
+  getSortedVehicleEntities(): Signal<VehicleEntity[]> {
+    return computed<VehicleEntity[]>(() => {
+      if (this.#hasEntities()) {
+        return this.state().ids.map(
+          (id) => (this.state().entities as Entities<VehicleEntity>)[id]
+        );
+      } else {
+        return [];
+      }
+    });
   }
 
   parseVehiclesToState(cars: Vehicle[]): VechicleState {
@@ -44,5 +44,21 @@ export class VehicleStateService extends StateMixin<Constructor, VechicleState>(
         entities: {},
       } as EntityState<VehicleEntity>
     );
+  }
+
+  updateVehicleEntityDetail(detail: VehicleDetail): void {
+    if (this.#hasEntities()) {
+      this.updateStateProp('entities', {
+        ...this.state().entities,
+        [detail.id]: {
+          ...(this.state().entities as Entities<VehicleEntity>)[detail.id],
+          detail,
+        },
+      });
+    }
+  }
+
+  #hasEntities(): boolean {
+    return this.state().entities !== null;
   }
 }
