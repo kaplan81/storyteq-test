@@ -1,7 +1,7 @@
 import { inject } from '@angular/core';
 import { Title } from '@angular/platform-browser';
-import { TitledComponent } from '../models/title.model';
-import { Constructor } from './constructor';
+import { Constructor } from '@vehicles/app/mixins/constructor';
+import { TitledComponent } from '@vehicles/app/models';
 
 export function TitleMixin<B extends Constructor>(
   Base: B,

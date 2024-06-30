@@ -1,5 +1,5 @@
 import { DestroyRef, inject } from '@angular/core';
-import { Constructor } from './constructor';
+import { Constructor } from '@vehicles/app/mixins/constructor';
 
 export function DestroyMixin<B extends Constructor>(
   Base: B,

@@ -1,4 +1,4 @@
 export enum RoutedComponents {
-  home,
+  cars,
 }
 export type RoutedComponentsET = keyof typeof RoutedComponents;

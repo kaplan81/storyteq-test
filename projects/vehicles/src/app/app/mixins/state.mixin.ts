@@ -6,8 +6,8 @@ import {
   signal,
   untracked,
 } from '@angular/core';
-import { State } from '../models/state.model';
-import { Constructor } from './constructor';
+import { Constructor } from '@vehicles/app/mixins/constructor';
+import { State } from '@vehicles/app/models/state.model';
 
 export function StateMixin<B extends Constructor, S>(
   Base: B,
