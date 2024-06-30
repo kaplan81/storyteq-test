@@ -44,7 +44,7 @@
             "outputPath": "dist/vehicles",
             "index": "projects/vehicles/src/index.html",
             "browser": "projects/vehicles/src/main.ts",
-            "polyfills": ["zone.js"],
+            "polyfills": [],
             "tsConfig": "projects/vehicles/tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": [
