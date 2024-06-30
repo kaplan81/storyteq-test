@@ -1,9 +1,13 @@
 <div class="cars">
   @if (vehicleState().loaded) {
-    <ul class="cars__list">
+    <ul class="cars__list" aria-live="polite">
       @for (car of cars(); track $index) {
         <li class="cars__list__item">
-          <img class="cars__list__item__photo" [src]="car.media[mediaApectRatio()].url" alt="" />
+          <img
+            class="cars__list__item__photo"
+            [src]="car.media[mediaApectRatio()].url"
+            alt="{{ car.name }} car"
+          />
           <div class="cars__list__item__info">
             <div class="cars__list__item__info__name">
               {{ car.name.toUpperCase() }}
