@@ -10,9 +10,7 @@ import { Observable } from 'rxjs';
 import { routes } from './app.routes';
 import { ConfigService } from './services/config/config.service';
 
-export function appInitializerFactory(
-  configService: ConfigService
-): () => Observable<Config> {
+export function appInitializerFactory(configService: ConfigService): () => Observable<Config> {
   return () => configService.loadConfig();
 }
 

@@ -6,7 +6,7 @@ import { TitledComponent } from '@vehicles/app/models';
 export function TitleMixin<B extends Constructor>(
   Base: B,
   title: string,
-  setTitle = false
+  setTitle = false,
 ): Constructor<TitledComponent> & B {
   return class extends Base {
     #titleService = inject(Title);

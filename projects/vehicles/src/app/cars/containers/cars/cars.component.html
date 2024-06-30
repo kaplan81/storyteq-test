@@ -1,11 +1,10 @@
 <h2>Cars component</h2>
 @if (cars().length > 0) {
-<pre>
+  <pre>
     {{ cars() | json }}
-  </pre
->
+  </pre>
 } @else {
-<teq-spinner></teq-spinner>
+  <teq-spinner></teq-spinner>
 }
 
 <!-- <ul>

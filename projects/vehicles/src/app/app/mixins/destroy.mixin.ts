@@ -3,7 +3,7 @@ import { Constructor } from '@vehicles/app/mixins/constructor';
 
 export function DestroyMixin<B extends Constructor>(
   Base: B,
-  callback: () => void
+  callback: () => void,
 ): Constructor & B {
   return class extends Base {
     #destroyRef = inject(DestroyRef);

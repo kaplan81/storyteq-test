@@ -9,11 +9,7 @@ export interface State<S> {
   resetState(callback?: (state: S) => void): void;
   state: Signal<S>;
   updateState(state: S, callback?: (state: S) => void): void;
-  updateStateProp<K extends keyof S>(
-    key: K,
-    value: S[K],
-    callback?: (state: S) => void
-  ): void;
+  updateStateProp<K extends keyof S>(key: K, value: S[K], callback?: (state: S) => void): void;
 }
 
 export interface EntityState<V> {

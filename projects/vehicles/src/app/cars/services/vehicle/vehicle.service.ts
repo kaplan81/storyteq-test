@@ -24,8 +24,8 @@ export class VehicleService {
        */
       delay(1500),
       tap((carDetail: VehicleDetail) =>
-        this.#vehicleStateService.updateVehicleEntityDetail(carDetail)
-      )
+        this.#vehicleStateService.updateVehicleEntityDetail(carDetail),
+      ),
     );
   }
 
@@ -42,16 +42,12 @@ export class VehicleService {
        */
       delay(1500),
       tap((cars: Vehicle[]) =>
-        this.#vehicleStateService.updateState(
-          this.#vehicleStateService.parseVehiclesToState(cars)
-        )
-      )
+        this.#vehicleStateService.updateState(this.#vehicleStateService.parseVehiclesToState(cars)),
+      ),
     );
   }
 
   #getVehiclesApiUrl(): string {
-    return `${this.#baseUrl}/${VehicleService.apiSegment}/${
-      VehicleService.vehiclesSegment
-    }`;
+    return `${this.#baseUrl}/${VehicleService.apiSegment}/${VehicleService.vehiclesSegment}`;
   }
 }

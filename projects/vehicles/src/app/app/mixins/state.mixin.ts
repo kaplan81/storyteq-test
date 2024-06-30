@@ -1,17 +1,10 @@
-import {
-  Signal,
-  WritableSignal,
-  computed,
-  effect,
-  signal,
-  untracked,
-} from '@angular/core';
+import { Signal, WritableSignal, computed, effect, signal, untracked } from '@angular/core';
 import { Constructor } from '@vehicles/app/mixins/constructor';
 import { State } from '@vehicles/app/models/state.model';
 
 export function StateMixin<B extends Constructor, S>(
   Base: B,
-  initialState: S
+  initialState: S,
 ): Constructor<State<S>> & B {
   return class extends Base {
     #state: WritableSignal<S> = signal<S>(initialState);
@@ -58,11 +51,7 @@ export function StateMixin<B extends Constructor, S>(
       this.#updateCallback(callback);
     }
 
-    updateStateProp<K extends keyof S>(
-      key: K,
-      value: S[K],
-      callback?: (state: S) => void
-    ): void {
+    updateStateProp<K extends keyof S>(key: K, value: S[K], callback?: (state: S) => void): void {
       this.#state.update((state: S) => ({
         ...state,
         [key]: value,

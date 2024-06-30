@@ -1,12 +1,7 @@
 import { Injectable, Signal, computed } from '@angular/core';
 import { Constructor, StateMixin, emptyBase } from '@vehicles/app/mixins';
 import { Entities, EntityState } from '@vehicles/app/models';
-import {
-  VechicleState,
-  Vehicle,
-  VehicleDetail,
-  VehicleEntity,
-} from '@vehicles/cars/models';
+import { VechicleState, Vehicle, VehicleDetail, VehicleEntity } from '@vehicles/cars/models';
 import { vehicleStateInitial } from './vehicle-state.initial';
 
 @Injectable({
@@ -14,14 +9,12 @@ import { vehicleStateInitial } from './vehicle-state.initial';
 })
 export class VehicleStateService extends StateMixin<Constructor, VechicleState>(
   emptyBase,
-  vehicleStateInitial
+  vehicleStateInitial,
 ) {
   getSortedVehicleEntities(): Signal<VehicleEntity[]> {
     return computed<VehicleEntity[]>(() => {
       if (this.#hasEntities()) {
-        return this.state().ids.map(
-          (id) => (this.state().entities as Entities<VehicleEntity>)[id]
-        );
+        return this.state().ids.map((id) => (this.state().entities as Entities<VehicleEntity>)[id]);
       } else {
         return [];
       }
@@ -42,7 +35,7 @@ export class VehicleStateService extends StateMixin<Constructor, VechicleState>(
       {
         ids: [],
         entities: {},
-      } as EntityState<VehicleEntity>
+      } as EntityState<VehicleEntity>,
     );
   }
 

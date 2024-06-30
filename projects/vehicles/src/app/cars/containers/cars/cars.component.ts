@@ -1,10 +1,5 @@
 import { JsonPipe } from '@angular/common';
-import {
-  ChangeDetectionStrategy,
-  Component,
-  Signal,
-  inject,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, Signal, inject } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { SpinnerComponent } from '@vehicles/app/components';
 import { RoutedComponents } from '@vehicles/app/enums';
@@ -23,12 +18,11 @@ import { VehicleService } from '@vehicles/cars/services/vehicle/vehicle.service'
 export class CarsComponent extends TitleMixin(
   emptyBase,
   RoutedComponents[RoutedComponents.cars],
-  true
+  true,
 ) {
   #vehicleService = inject(VehicleService);
   #vehicleStateService = inject(VehicleStateService);
-  cars: Signal<VehicleEntity[]> =
-    this.#vehicleStateService.getSortedVehicleEntities();
+  cars: Signal<VehicleEntity[]> = this.#vehicleStateService.getSortedVehicleEntities();
 
   /**
    * Test calls.
