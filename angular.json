@@ -44,20 +44,21 @@
             "outputPath": "dist/vehicles",
             "index": "projects/vehicles/src/index.html",
             "browser": "projects/vehicles/src/main.ts",
-            "polyfills": [
-              "zone.js"
-            ],
+            "polyfills": ["zone.js"],
             "tsConfig": "projects/vehicles/tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": [
               {
                 "glob": "**/*",
                 "input": "projects/vehicles/public"
+              },
+              {
+                "glob": "config.json",
+                "input": "projects/vehicles/config",
+                "output": "/config"
               }
             ],
-            "styles": [
-              "projects/vehicles/src/styles.scss"
-            ],
+            "styles": ["projects/vehicles/src/styles.scss"],
             "scripts": []
           },
           "configurations": {
