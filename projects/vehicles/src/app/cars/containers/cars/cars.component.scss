@@ -4,6 +4,7 @@
   &__list {
     display: flex;
     flex-direction: column;
+    padding: 20px;
     @include mixins.bigger-than(md) {
       flex-direction: row;
       flex-wrap: wrap;
