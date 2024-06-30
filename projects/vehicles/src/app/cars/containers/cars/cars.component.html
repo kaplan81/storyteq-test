@@ -1,16 +1,24 @@
 <div class="cars">
-  <h2>By your car with us</h2>
-
-  <ul>
-    @for (car of cars(); track $index) {
-      <li>Media path is {{ car.media[mediaApectRatio()].url }}</li>
-    }
-  </ul>
-
+  <h2 class="cars__heading">By your car with us</h2>
   @if (vehicleState().loaded) {
-    <pre>
-      {{ cars() | json }}
-    </pre>
+    <ul class="cars__list">
+      @for (car of cars(); track $index) {
+        <li class="cars__list__item">
+          <img class="cars__list__photo" [src]="car.media[mediaApectRatio()].url" alt="" />
+          <div class="cars__list__photo__info">
+            <div class="cars__list__photo__info__name">
+              {{ car.name.toUpperCase() }}
+            </div>
+            <div class="cars__list__photo__info__price">
+              {{ car.detail?.price }}
+            </div>
+            <div class="cars__list__photo__info__description">
+              {{ car.detail?.description }}
+            </div>
+          </div>
+        </li>
+      }
+    </ul>
   } @else {
     <teq-spinner></teq-spinner>
   }
