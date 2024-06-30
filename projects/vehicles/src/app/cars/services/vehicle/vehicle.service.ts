@@ -36,31 +36,38 @@ export class VehicleService {
    */
   getCars(): Observable<Vehicle[]> {
     const url: string = this.#getVehiclesApiUrl();
-    return this.#http.get<Vehicle[]>(url).pipe(
-      tap((cars: Vehicle[]) => {
-        const state: VechicleState = cars.reduce(
-          (acc: EntityState<VehicleEntity>, car: Vehicle) => {
-            return {
-              ids: [...acc.ids, car.id],
-              entities: {
-                ...acc.entities,
-                [car.id]: { ...car, detail: null },
-              },
-            };
-          },
-          {
-            ids: [],
-            entities: {},
-          } as EntityState<VehicleEntity>
-        );
-        this.#vehicleStateService.updateState(state);
-      })
-    );
+    return this.#http
+      .get<Vehicle[]>(url)
+      .pipe(
+        tap((cars: Vehicle[]) =>
+          this.#vehicleStateService.updateState(
+            this.#parseVehiclesToState(cars)
+          )
+        )
+      );
   }
 
   #getVehiclesApiUrl(): string {
     return `${this.#baseUrl}/${VehicleService.apiSegment}/${
       VehicleService.vehiclesSegment
     }`;
+  }
+
+  #parseVehiclesToState(cars: Vehicle[]): VechicleState {
+    return cars.reduce(
+      (acc: EntityState<VehicleEntity>, car: Vehicle) => {
+        return {
+          ids: [...acc.ids, car.id],
+          entities: {
+            ...acc.entities,
+            [car.id]: { ...car, detail: null },
+          },
+        };
+      },
+      {
+        ids: [],
+        entities: {},
+      } as EntityState<VehicleEntity>
+    );
   }
 }
