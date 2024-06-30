@@ -1,6 +1,35 @@
+@use 'mixins';
+
 .cars {
-  &__heading {
-    margin-bottom: 20px;
-    // font-weight: bold;
+  &__list {
+    &__item {
+      display: flex;
+
+      &__photo {
+        width: 100px;
+        @include mixins.bigger-than(sm) {
+          width: 150px;
+        }
+        @include mixins.bigger-than(md) {
+          width: 250px;
+        }
+      }
+      &__info {
+        flex-grow: 1;
+        border: 1px solid #eee;
+        padding: 20px;
+        &__name {
+          font-weight: bold;
+          margin-bottom: 7px;
+        }
+        &__price {
+          margin-bottom: 12px;
+          color: #666;
+        }
+        &__description {
+          color: #666;
+        }
+      }
+    }
   }
 }

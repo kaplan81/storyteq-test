@@ -13,7 +13,7 @@ export interface VehicleMedia {
 
 export interface VehicleDetail extends IdData<string> {
   description: string;
-  price: string;
+  price?: string;
   meta: VehicleDetailMeta;
 }
 

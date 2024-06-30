@@ -1,18 +1,15 @@
 <div class="cars">
-  <h2 class="cars__heading">Buy your car with us :)</h2>
   @if (vehicleState().loaded) {
     <ul class="cars__list">
       @for (car of cars(); track $index) {
         <li class="cars__list__item">
-          <img class="cars__list__photo" [src]="car.media[mediaApectRatio()].url" alt="" />
-          <div class="cars__list__photo__info">
-            <div class="cars__list__photo__info__name">
+          <img class="cars__list__item__photo" [src]="car.media[mediaApectRatio()].url" alt="" />
+          <div class="cars__list__item__info">
+            <div class="cars__list__item__info__name">
               {{ car.name.toUpperCase() }}
             </div>
-            <div class="cars__list__photo__info__price">
-              {{ car.detail?.price }}
-            </div>
-            <div class="cars__list__photo__info__description">
+            <div class="cars__list__item__info__price">{{ getPrice(car) }}</div>
+            <div class="cars__list__item__info__description">
               {{ car.detail?.description }}
             </div>
           </div>

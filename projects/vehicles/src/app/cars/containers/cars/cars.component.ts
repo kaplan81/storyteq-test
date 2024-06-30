@@ -57,4 +57,14 @@ export class CarsComponent extends TitleMixin(
       });
     this.#vehicleService.getCars().pipe(takeUntilDestroyed()).subscribe();
   }
+
+  getPrice(car: VehicleEntity): string {
+    let price = '';
+    if (car.detail !== null) {
+      if (car.detail.price !== undefined) {
+        price = car.detail.price;
+      }
+    }
+    return price.length > 0 ? `From ${price}` : 'No price available';
+  }
 }

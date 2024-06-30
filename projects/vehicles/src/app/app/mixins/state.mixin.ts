@@ -29,7 +29,7 @@ export function StateMixin<B extends Constructor, S>(
            * whenever the state is updated.
            */
           // For example:
-          console.log(this.state());
+          // console.log(this.state());
         });
       });
     }
