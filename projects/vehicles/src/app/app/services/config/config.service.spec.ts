@@ -21,7 +21,7 @@ describe('ConfigService', () => {
     expect(injectedService).toBe(configService);
   }));
 
-  describe('loadConfig', () => {
+  describe('loadConfig()', () => {
     it('fetches config', (done: jest.DoneCallback) => {
       configService.loadConfig().subscribe((config: Config) => {
         expect(config).toStrictEqual(configMock);
