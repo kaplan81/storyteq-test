@@ -1,0 +1,20 @@
+/*
+  Breakpoints based on Bootstrap:
+  https://getbootstrap.com/docs/5.3/layout/breakpoints/#available-breakpoints
+*/
+
+$breakpoints: (
+  // Extra small devices (small phones).
+  // Not usable anymore. Devices are no longer that small.
+  xs: 320px,
+  // >= sm === small devices (phones, phablets and tablets).
+  sm: 576px,
+  // >= md === medium devices (landscape tablets and laptops).
+  md: 768px,
+  // >= lg === large devices (regular monitors).
+  lg: 992px,
+  // >= xl === extra large devices (big monitors)
+  xl: 1200px,
+  // >= xxl === extra extra large devices (big big monitors)
+  xxl: 1400px
+);
