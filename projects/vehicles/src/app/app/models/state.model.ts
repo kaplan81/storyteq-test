@@ -15,3 +15,8 @@ export interface State<S> {
     callback?: (state: S) => void
   ): void;
 }
+
+export interface EntityState<V> {
+  ids: (string | number)[];
+  entities: { [id: string | number]: V } | null;
+}

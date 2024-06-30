@@ -7,16 +7,16 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
-export class VehiclesService {
+export class VehicleService {
   static readonly apiSegment = 'api';
   static readonly vehiclesSegment = 'vehicles';
   #configService = inject(ConfigService);
   #baseUrl = this.#configService.getApisConfig().vehicles.baseUrl;
   #http = inject(HttpClient);
 
-  getCar(carId: string): Observable<Vehicle[]> {
+  getCar(carId: string): Observable<VehicleDetail> {
     const url = `${this.#getVehiclesApiUrl()}/${carId}`;
-    return this.#http.get<Vehicle[]>(url);
+    return this.#http.get<VehicleDetail>(url);
   }
 
   /**
@@ -24,14 +24,14 @@ export class VehiclesService {
    * would allow us to distinguish between vehiches that
    * are cars and vehicles that are other type.
    */
-  getCars(): Observable<VehicleDetail> {
+  getCars(): Observable<Vehicle[]> {
     const url: string = this.#getVehiclesApiUrl();
-    return this.#http.get<VehicleDetail>(url);
+    return this.#http.get<Vehicle[]>(url);
   }
 
   #getVehiclesApiUrl(): string {
-    return `${this.#baseUrl}/${VehiclesService.apiSegment}/${
-      VehiclesService.vehiclesSegment
+    return `${this.#baseUrl}/${VehicleService.apiSegment}/${
+      VehicleService.vehiclesSegment
     }`;
   }
 }
