@@ -1,7 +1,8 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { RoutedComponents } from '@vehicles/app/enums';
 import { TitleMixin, emptyBase } from '@vehicles/app/mixins';
+import { VehiclesService } from '@vehicles/cars/services/vehicles.service';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -14,4 +15,10 @@ export class CarsComponent extends TitleMixin(
   emptyBase,
   RoutedComponents[RoutedComponents.cars].toUpperCase(),
   true
-) {}
+) {
+  #vehiclesService = inject(VehiclesService);
+
+  // constructor() {
+  //   this.#vehiclesService
+  // }
+}

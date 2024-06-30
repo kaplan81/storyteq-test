@@ -2,10 +2,10 @@ import { EnvET } from '@vehicles/app/enums';
 
 export interface Config {
   env: EnvET;
-  apis: Apis;
+  apis: ConfigApis;
 }
 
-export interface Apis {
+export interface ConfigApis {
   vehicles: Api;
 }
 

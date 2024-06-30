@@ -1,7 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { EnvET } from '@vehicles/app/enums';
-import { Apis, Config } from '@vehicles/app/models';
+import { Config, ConfigApis } from '@vehicles/app/models';
 import { Observable, catchError, of, tap } from 'rxjs';
 
 @Injectable({
@@ -14,7 +14,7 @@ export class ConfigService {
   #http = inject(HttpClient);
   #config: Config | null = null;
 
-  getApisConfig(): Apis {
+  getApisConfig(): ConfigApis {
     this.#checkConfig();
     return (this.#config as Config).apis;
   }
