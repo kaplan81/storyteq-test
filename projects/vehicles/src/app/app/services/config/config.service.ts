@@ -2,6 +2,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { EnvET } from '@vehicles/app/enums';
 import { Config, ConfigApis } from '@vehicles/app/models';
+import { configMock, isJest } from '@vehicles/app/test';
 import { Observable, catchError, of, tap } from 'rxjs';
 
 @Injectable({
@@ -16,12 +17,12 @@ export class ConfigService {
 
   getApisConfig(): ConfigApis {
     this.#checkConfig();
-    return (this.#config as Config).apis;
+    return (this.#getConfig() as Config).apis;
   }
 
   getEnvConfig(): EnvET {
     this.#checkConfig();
-    return (this.#config as Config).env;
+    return (this.#getConfig() as Config).env;
   }
 
   loadConfig(): Observable<Config> {
@@ -43,8 +44,15 @@ export class ConfigService {
   }
 
   #checkConfig(): void {
-    if (this.#config === null) {
+    if (this.#getConfig() === null && !isJest()) {
       throw Error('Config should be set during app initialization.');
     }
+  }
+
+  #getConfig(): Config | null {
+    if (!isJest) {
+      return this.#config;
+    }
+    return configMock;
   }
 }

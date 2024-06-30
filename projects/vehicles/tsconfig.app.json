@@ -2,7 +2,7 @@
   "extends": "../../tsconfig.json",
   "compilerOptions": {
     "outDir": "../../out-tsc/app",
-    "types": [],
+    "types": ["jest"],
     "paths": {
       "@vehicles/app/*": ["./src/app/app/*"],
       "@vehicles/cars/*": ["./src/app/cars/*"]

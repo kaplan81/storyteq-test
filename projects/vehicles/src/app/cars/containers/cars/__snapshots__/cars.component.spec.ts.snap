@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CarsComponent should match snapshot 1`] = `
+<ng-component
+  cars={[Function Function]}
+  mediaApectRatio={[Function Function]}
+  title={[Function String]}
+  vehicleState={[Function Function]}
+>
+  <div
+    class="cars"
+  >
+    <teq-spinner>
+      <span
+        class="spinner"
+      />
+    </teq-spinner>
+  </div>
+</ng-component>
+`;

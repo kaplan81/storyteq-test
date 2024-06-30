@@ -1,5 +1,4 @@
 import { BreakpointObserver, BreakpointState } from '@angular/cdk/layout';
-import { JsonPipe } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -20,7 +19,7 @@ import { VehicleService } from '@vehicles/cars/services/vehicle/vehicle.service'
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [JsonPipe, SpinnerComponent],
+  imports: [SpinnerComponent],
   standalone: true,
   styleUrl: './cars.component.scss',
   templateUrl: './cars.component.html',
