@@ -12,3 +12,13 @@ export const vehicleStateMock: VechicleState = {
     },
   },
 };
+
+export const vehicleStateWithoutDetailMock: VechicleState = {
+  ...vehicleStateMock,
+  entities: {
+    [vehicleMock.id]: {
+      ...vehicleMock,
+      detail: null,
+    },
+  },
+};
