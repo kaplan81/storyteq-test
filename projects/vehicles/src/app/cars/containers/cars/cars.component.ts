@@ -27,9 +27,6 @@ export class CarsComponent extends TitleMixin(
     this.#vehicleStateService.state(),
   );
 
-  /**
-   * Test calls.
-   */
   constructor() {
     super();
     this.#vehicleService.getCars().pipe(takeUntilDestroyed()).subscribe();
