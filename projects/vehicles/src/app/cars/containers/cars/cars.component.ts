@@ -6,6 +6,7 @@ import {
   inject,
 } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { SpinnerComponent } from '@vehicles/app/components';
 import { RoutedComponents } from '@vehicles/app/enums';
 import { TitleMixin, emptyBase } from '@vehicles/app/mixins';
 import { VehicleEntity } from '@vehicles/cars/models';
@@ -14,7 +15,7 @@ import { VehicleService } from '@vehicles/cars/services/vehicle/vehicle.service'
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [JsonPipe],
+  imports: [JsonPipe, SpinnerComponent],
   standalone: true,
   styleUrl: './cars.component.scss',
   templateUrl: './cars.component.html',
