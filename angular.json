@@ -59,7 +59,10 @@
               }
             ],
             "styles": ["projects/vehicles/src/styles.scss"],
-            "scripts": []
+            "scripts": [],
+            "stylePreprocessorOptions": {
+              "includePaths": ["projects/vehicles/src/scss"]
+            }
           },
           "configurations": {
             "production": {

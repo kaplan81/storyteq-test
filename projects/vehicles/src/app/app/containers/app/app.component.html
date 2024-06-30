@@ -1,5 +1,12 @@
-<div class="container">
-  <h1>{{ this.title }}</h1>
-  <br />
-  <router-outlet></router-outlet>
-</div>
+<!-- We do not apply BEM for app component -->
+<header>
+  <h1>{{ title }}</h1>
+</header>
+<main>
+  <section>
+    <router-outlet></router-outlet>
+  </section>
+</main>
+<footer>
+  <p>&copy; 2024 {{ title }}</p>
+</footer>
