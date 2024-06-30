@@ -1,0 +1,8 @@
+{
+  "env": "local",
+  "apis": {
+    "vehicles": {
+      "baseUrl": "https://frontend-code-test-api-jhbwml7vva-nw.a.run.app"
+    }
+  }
+}
