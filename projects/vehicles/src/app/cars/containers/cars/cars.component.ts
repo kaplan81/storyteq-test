@@ -11,7 +11,7 @@ import {
 } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { SpinnerComponent } from '@vehicles/app/components';
-import { RoutedComponents } from '@vehicles/app/enums';
+import { Breakpoint, RoutedComponents } from '@vehicles/app/enums';
 import { TitleMixin, emptyBase } from '@vehicles/app/mixins';
 import { MediaAspectRatio } from '@vehicles/cars/enums';
 import { VechicleState, VehicleEntity } from '@vehicles/cars/models';
@@ -44,14 +44,14 @@ export class CarsComponent extends TitleMixin(
   constructor() {
     super();
     this.#breakpointObserver
-      .observe(['(min-width: 768px)'])
+      .observe([`(min-width: ${Breakpoint.md})`])
       .pipe(takeUntilDestroyed())
       .subscribe((breakpointState: BreakpointState) => {
         if (breakpointState.matches) {
-          console.log('Viewport width is 768px or greater!');
+          console.log(`Viewport width is ${Breakpoint.md}) or greater!`);
           this.mediaApectRatio.set(MediaAspectRatio.nonMobile);
         } else {
-          console.log('Viewport width is less than 768px!');
+          console.log(`Viewport width is less than ${Breakpoint.md}!`);
           this.mediaApectRatio.set(MediaAspectRatio.mobile);
         }
       });
