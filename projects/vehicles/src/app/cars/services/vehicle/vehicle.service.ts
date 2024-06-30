@@ -10,12 +10,16 @@ import { VehicleStateService } from '../vehicle-state/vehicle-state.service';
 })
 export class VehicleService {
   static readonly apiSegment = 'api';
-  static readonly vehiclesSegment = 'vehicles';
   static readonly delay = 1000;
+  static readonly vehiclesSegment = 'vehicles';
+  #baseUrl: string;
   #configService = inject(ConfigService);
-  #baseUrl = this.#configService.getApisConfig().vehicles.baseUrl;
   #http = inject(HttpClient);
   #vehicleStateService = inject(VehicleStateService);
+
+  constructor() {
+    this.#baseUrl = this.#configService.getApisConfig().vehicles.baseUrl;
+  }
 
   getCar(carId: string): Observable<VehicleDetail> {
     const url = `${this.#getVehiclesApiUrl()}/${carId}`;
