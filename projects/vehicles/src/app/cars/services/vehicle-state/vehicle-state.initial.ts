@@ -1,6 +1,6 @@
-import { VechiclesState } from '@vehicles/cars/models';
+import { VechicleState } from '@vehicles/cars/models';
 
-export const vehicleStateInitial: VechiclesState = {
+export const vehicleStateInitial: VechicleState = {
   ids: [],
   entities: null,
 };
