@@ -11,6 +11,7 @@ import { VehicleStateService } from '../vehicle-state/vehicle-state.service';
 export class VehicleService {
   static readonly apiSegment = 'api';
   static readonly vehiclesSegment = 'vehicles';
+  static readonly delay = 1000;
   #configService = inject(ConfigService);
   #baseUrl = this.#configService.getApisConfig().vehicles.baseUrl;
   #http = inject(HttpClient);
@@ -22,7 +23,7 @@ export class VehicleService {
       /**
        * Add a delay to make it more realistic and show the spinner.
        */
-      delay(1500),
+      delay(VehicleService.delay),
       tap((carDetail: VehicleDetail) =>
         this.#vehicleStateService.updateVehicleEntityDetail(carDetail),
       ),
@@ -40,7 +41,7 @@ export class VehicleService {
       /**
        * Add a delay to make it more realistic and show the spinner.
        */
-      delay(1500),
+      delay(VehicleService.delay),
       tap((cars: Vehicle[]) =>
         this.#vehicleStateService.updateState(this.#vehicleStateService.parseVehiclesToState(cars)),
       ),
