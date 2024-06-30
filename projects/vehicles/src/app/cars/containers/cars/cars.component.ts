@@ -18,7 +18,12 @@ export class CarsComponent extends TitleMixin(
 ) {
   #vehiclesService = inject(VehiclesService);
 
-  // constructor() {
-  //   this.#vehiclesService
-  // }
+  /**
+   * Test calls.
+   */
+  constructor() {
+    super();
+    this.#vehiclesService.getCars().subscribe(console.log);
+    this.#vehiclesService.getCar('xe').subscribe(console.log);
+  }
 }

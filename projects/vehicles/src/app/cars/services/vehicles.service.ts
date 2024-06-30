@@ -1,6 +1,8 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { ConfigService } from '@vehicles/app/services/config/config.service';
-import { Observable, of } from 'rxjs';
+import { Vehicle, VehicleDetail } from '@vehicles/cars/models';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -10,10 +12,11 @@ export class VehiclesService {
   static readonly vehiclesSegment = 'vehicles';
   #configService = inject(ConfigService);
   #baseUrl = this.#configService.getApisConfig().vehicles.baseUrl;
+  #http = inject(HttpClient);
 
-  getCar(carId: string): Observable<any> {
+  getCar(carId: string): Observable<Vehicle[]> {
     const url = `${this.#getVehiclesApiUrl()}/${carId}`;
-    return of({});
+    return this.#http.get<Vehicle[]>(url);
   }
 
   /**
@@ -21,9 +24,9 @@ export class VehiclesService {
    * would allow us to distinguish between vehiches that
    * are cars and vehicles that are other type.
    */
-  getCars(): Observable<any> {
-    const url = this.#getVehiclesApiUrl();
-    return of();
+  getCars(): Observable<VehicleDetail> {
+    const url: string = this.#getVehiclesApiUrl();
+    return this.#http.get<VehicleDetail>(url);
   }
 
   #getVehiclesApiUrl(): string {
