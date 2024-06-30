@@ -2,16 +2,25 @@
 
 .cars {
   &__list {
+    display: flex;
+    flex-direction: column;
+    @include mixins.bigger-than(md) {
+      flex-direction: row;
+      flex-wrap: wrap;
+    }
     &__item {
       display: flex;
-
+      @include mixins.bigger-than(md) {
+        flex-basis: 50%;
+        flex-direction: column;
+      }
+      @include mixins.bigger-than(lg) {
+        flex-basis: 25%;
+      }
       &__photo {
-        width: 100px;
-        @include mixins.bigger-than(sm) {
-          width: 150px;
-        }
+        width: 150px;
         @include mixins.bigger-than(md) {
-          width: 250px;
+          width: 100%;
         }
       }
       &__info {

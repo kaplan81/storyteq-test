@@ -48,7 +48,7 @@ export class CarsComponent extends TitleMixin(
       .pipe(takeUntilDestroyed())
       .subscribe((breakpointState: BreakpointState) => {
         if (breakpointState.matches) {
-          console.log(`Viewport width is ${Breakpoint.md}) or greater!`);
+          console.log(`Viewport width is ${Breakpoint.md} or greater!`);
           this.mediaApectRatio.set(MediaAspectRatio.nonMobile);
         } else {
           console.log(`Viewport width is less than ${Breakpoint.md}!`);
